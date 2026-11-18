@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+
+    <title>
+        Spatial Design
+    </title>
+
+<script
+src="https://aframe.io/releases/1.8.0/aframe.min.js">
+</script>
+</head>
+
+<body>
+
+<a-scene>
+
+<a-assets timeout="30000">
+     <a-asset-item id="windowModel" src="assets/models/windowwall.gltf"></a-asset-item>
+</a-assets>
+
+<a-assets timeout="30000">
+     <a-asset-item id="wallModel" src="assets/models/studiowall.gltf"></a-asset-item>
+  </a-assets>
+
+  <a-assets timeout="30000">
+     <a-asset-item id="JUKIModel" src="assets/models/JUKI.gltf"></a-asset-item>
+
+  </a-assets>
+
+  <a-assets timeout="30000">
+     <a-asset-item id="patterntableModel" src="assets/models/patterntable.gltf"></a-asset-item>
+
+     </a-assets>
+
+<a-assets timeout="30000">
+     <a-asset-item id="fabricshelfModel" src="assets/models/fabricshelf.gltf"></a-asset-item>
+
+     </a-assets>
+
+ <a-assets timeout="30000">
+     <a-asset-item id="chandelierModel" src="assets/models/chandelier.gltf"></a-asset-item>
+
+     </a-assets>
+
+     
+     <a-assets timeout="30000">
+     <a-asset-item id="greenscreenModel" src="assets/models/greenscreen.gltf"></a-asset-item>
+
+     </a-assets>
+
+      <a-assets timeout="30000">
+     <a-asset-item id="lamppostModel" src="assets/models/lamppost.gltf"></a-asset-item>
+
+     </a-assets>
+
+      <a-assets timeout="30000">
+     <a-asset-item id="throneModel" src="assets/models/throne.gltf"></a-asset-item>
+
+     </a-assets>
+
+     <a-assets timeout="30000">
+     <a-asset-item id="chairModel" src="assets/models/chair.gltf"></a-asset-item>
+  </a-assets>
+
+<a-assets timeout="30000">
+     <a-asset-item id="crossModel" src="assets/models/cross.gltf"></a-asset-item>
+
+  </a-assets>
+
+<a-assets timeout="30000">
+     <a-asset-item id="stoolModel" src="assets/models/stool.gltf"></a-asset-item>
+
+     </a-assets>
+
+<a-assets timeout="30000">
+     <a-asset-item id="standingtableModel" src="assets/models/standingtable.gltf"></a-asset-item>
+
+     </a-assets>
+
+<a-assets timeout="30000">
+     <a-asset-item id="vaseModel" src="assets/models/vase.gltf"></a-asset-item>
+
+     </a-assets>
+
+<img
+    id="dallasEnvironment"
+    src="assets/images/dallas-360.jpg">
+
+
+
+<!--Walls-->
+
+<!--Window Wall-->
+<a-entity
+gltf-model="#windowModel"
+position="-.30 .25 -14"
+rotation="0 0 0"
+scale=".16 .13 .075">
+</a-entity>
+<!--Left Wall-->
+<a-entity
+gltf-model="#wallModel"
+position="-10 0 -5"
+rotation="0 -90 0"
+scale=".18 .17 .075">
+</a-entity>
+<!--Right Wall-->
+<a-entity
+gltf-model="#wallModel"
+position="10 0 -5"
+rotation="0 90 0"
+scale=".18 .17 .075">
+</a-entity>
+<!--Back Wall-->
+<a-entity
+gltf-model="#wallModel"
+position="10 0 5"
+rotation="0 0 0"
+scale="17 .14 .075">
+</a-entity>
+
+
+<!--Floor-->
+    <a-plane
+position="0 0 -5"
+rotation="-90 0 0"
+width="20"
+height="20"
+color="#F4F0E8">
+</a-plane>
+<!--Ceiling-->
+<a-plane
+position="0 5 -5"
+rotation="90 0 0"
+width="20"
+height="20"
+color="#F4F0E8">
+</a-plane>
+
+<a-sky
+    src="#dallasEnvironment"
+    radius="100"
+    position="0 -20 0"
+    rotation="0 270 0">
+</a-sky>
+
+
+<!--Equipment-->
+
+<!-- JUKI SEWING MACHINE 1 -->
+<a-entity
+    gltf-model="#JUKIModel"
+    position="-8 0 3"
+    rotation="0 90 0"
+    scale=".25 .25 .25">
+</a-entity>
+
+<!-- JUKI SEWING MACHINE 2 -->
+<a-entity
+    gltf-model="#JUKIModel"
+    position="-8 0 0"
+    rotation="0 90 0"
+    scale=".25 .25 .25">
+</a-entity>
+
+<!-- JUKI SEWING MACHINE 3 -->
+<a-entity
+    gltf-model="#JUKIModel"
+    position="-8 0 -3"
+    rotation="0 90 0"
+    scale=".25 .25 .25">
+</a-entity>
+
+<!-- JUKI SEWING MACHINE 4 -->
+<a-entity
+    gltf-model="#JUKIModel"
+    position="-8 0 -6"
+    rotation="0 90 0"
+    scale=".25 .25 .25">
+</a-entity>
+
+<!-- JUKI SEWING MACHINE 5 -->
+<a-entity
+    gltf-model="#JUKIModel"
+    position="-8 0 -9"
+    rotation="0 90 0"
+    scale=".25 .25 .25">
+</a-entity>
+
+<!-- JUKI SEWING MACHINE 6 -->
+<a-entity
+    gltf-model="#JUKIModel"
+    position="-8 0 -12"
+    rotation="0 90 0"
+    scale=".25 .25 .25">
+</a-entity>
+
+<!--SEATING: STOOLS IN FRONT OF ALL JUKI MACHINES-->
+
+<!-- Stool 1 -->
+<a-entity
+    gltf-model="#stoolModel"
+    position="-6.75 -.50 2.25"
+    rotation="0 -90 0"
+    scale=".21 .15 .21">
+</a-entity>
+
+<!-- Stool 2 -->
+<a-entity
+    gltf-model="#stoolModel"
+    position="-6.75 -.50 -.75"
+    rotation="0 -90 0"
+    scale=".21 .15 .21">
+</a-entity>
+
+<!-- Stool 3 -->
+<a-entity
+    gltf-model="#stoolModel"
+    position="-6.75 -.50 -3.75"
+    rotation="0 -90 0"
+    scale=".21 .15 .21">
+</a-entity>
+
+<!-- Stool 4 -->
+<a-entity
+    gltf-model="#stoolModel"
+    position="-6.75 -.50 -6.75"
+    rotation="0 -90 0"
+    scale=".21 .15 .21">
+</a-entity>
+
+<!-- Stool 5 -->
+<a-entity
+    gltf-model="#stoolModel"
+    position="-6.75 -.50 -9.75"
+    rotation="0 -90 0"
+    scale=".21 .15 .21">
+</a-entity>
+
+<!-- Stool 6 -->
+<a-entity
+    gltf-model="#stoolModel"
+    position="-6.75 -.50 -12.75"
+    rotation="0 -90 0"
+    scale=".21 .15 .21">
+</a-entity>
+
+<!--Pattern Tables-->
+<!--Upper Right Table-->
+<a-entity
+id="patterntable"
+gltf-model="#patterntableModel"
+position="2.5 0 -9"
+rotation="0 90 0"
+scale=".5 .40 .5">
+</a-entity>
+<!--Upper Left Table-->
+<a-entity
+id="patterntable"
+gltf-model="#patterntableModel"
+position="-2.5 0 -9"
+rotation="0 90 0"
+scale=".5 .40 .5">
+</a-entity>
+<!--Lower Right Table-->
+<a-entity
+id="patterntable"
+gltf-model="#patterntableModel"
+position="2.5 0 -4"
+rotation="0 90 0"
+scale=".5 .40 .5">
+</a-entity>
+<!--Lower Left Table-->
+<a-entity
+id="patterntable"
+gltf-model="#patterntableModel"
+position="-2.5 0 -4"
+rotation="0 90 0"
+scale=".5 .40 .5">
+</a-entity>
+
+<!--TRASH CANS: ONE BESIDE EACH PATTERN TABLE-->
+
+<!-- Upper Right Table -->
+<a-entity
+    gltf-model="#vaseModel"
+    position="2.5 0 -7.5"
+    rotation="0 -90 0"
+    scale=".35 .30 .35">
+</a-entity>
+
+<!-- Upper Left Table -->
+<a-entity
+    gltf-model="#vaseModel"
+    position="-2.5 0 -7.5"
+    rotation="0 -90 0"
+    scale=".35 .30 .35">
+</a-entity>
+
+<!-- Lower Right Table -->
+<a-entity
+    gltf-model="#vaseModel"
+    position="2.5 0 -2.5"
+    rotation="0 -90 0"
+    scale=".35 .30 .35">
+</a-entity>
+
+<!-- Lower Left Table -->
+<a-entity
+    gltf-model="#vaseModel"
+    position="-2.5 0 -2.5"
+    rotation="0 -90 0"
+    scale=".35 .30 .35">
+</a-entity>
+
+
+
+<!--Fabric Shelfs-->
+<a-entity
+    gltf-model="#fabricshelfModel"
+    position="9 -.25 -13"
+    rotation="0 0 0"
+    scale=".10 .13 .15">
+</a-entity>
+
+<a-entity
+    gltf-model="#fabricshelfModel"
+    position="9 -.25 -9"
+    rotation="0 0 0"
+    scale=".10 .13 .15">
+</a-entity>
+
+<a-entity
+    gltf-model="#chandelierModel"
+    position=".5 2.5 -5"
+    rotation="0 0 0"
+    scale=".25 .25 .25">
+</a-entity>
+
+<!--Greenscreen Area-->
+<a-entity
+    gltf-model="#greenscreenModel"
+    position="10 -1 1.75"
+    rotation="0 90 0"
+    scale=".60 .70 .65">
+
+</a-entity>
+
+<a-entity
+    gltf-model="#lamppostModel"
+    position="4.75 0 3"
+    rotation="0 45 0"
+    scale=".15 .25 .15">
+</a-entity>
+
+<a-entity
+    gltf-model="#lamppostModel"
+    position="5 0 -1.5"
+    rotation="0 -45 0"
+    scale=".15 .25 .15">
+</a-entity>
+
+<!--At The Cross-->
+<a-entity
+    gltf-model="#throneModel"
+    position="-2 .75 -13"
+    rotation="0 -90 0"
+    scale=".50 .50 .50">
+</a-entity>
+
+<a-entity
+    gltf-model="#chairModel"
+    position="2.75www 0 -13"
+    rotation="0 -90 0"
+    scale=".040 .050 .040">
+</a-entity>
+
+<a-entity
+gltf-model="#crossModel"
+position="0 0 -16.5"
+rotation="0 360 0"
+scale="0.045 0.058 0.040">
+</a-entity>
+
+<a-entity
+gltf-model="#standingtableModel"
+position=".70 -.25 -13"
+rotation="0 -90 0"
+scale=".25 .25 .25">
+</a-entity>
+
+
+
+
+
+<!-- ================================= -->
+<!-- NEW STUDIO LIGHTING SYSTEM -->
+<!-- ================================= -->
+
+<!-- BASE LIGHT: Illuminates the entire room -->
+<a-light
+    type="ambient"
+    color="#FFFFFF"
+    intensity=".6">
+</a-light>
+
+<!-- MAIN LIGHT: Comes from behind the user (+Z) -->
+<a-light
+    type="directional"
+    color="#FFF4E3"
+    intensity="1.5"
+    position="0 5 15"
+    rotation="-25 0 0">
+</a-light>
+
+<!-- SECONDARY LIGHT: Fills darker areas -->
+<a-light
+    type="directional"
+    color="#FFFFFF"
+    intensity="2"
+    position="0 5 5"
+    rotation="-35 0 0">
+</a-light>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</a-scene>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

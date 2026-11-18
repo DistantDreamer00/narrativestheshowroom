@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+
+    <title>
+        Spatial Design
+    </title>
+
+<script
+src="https://aframe.io/releases/1.8.0/aframe.min.js">
+</script>
+
+<script>
+AFRAME.registerComponent('model-color', {
+  schema: {
+    color: {type: 'color', default: '#FFFFFF'}
+  },
+
+  init: function () {
+    this.el.addEventListener('model-loaded', () => {
+      const model = this.el.getObject3D('mesh');
+      const color = this.data.color;
+
+      if (!model) return;
+
+      model.traverse((node) => {
+        if (node.isMesh && node.material) {
+          const recolor = (material) => {
+            const newMaterial = material.clone();
+            if (newMaterial.color) {
+              newMaterial.color.set(color);
+            }
+            return newMaterial;
+          };
+
+          node.material = Array.isArray(node.material)
+            ? node.material.map(recolor)
+            : recolor(node.material);
+        }
+      });
+    });
+  }
+});
+
+
+// 1. COLOR INTERACTION FOR GLTF MODELS
+AFRAME.registerComponent('model-color-on-click', {
+  init: function () {
+    const el = this.el;
+    let changed = false;
+    let prepared = false;
+
+    el.addEventListener('click', function () {
+      const model = el.getObject3D('mesh');
+      if (!model) return;
+
+      // Make separate materials before changing colors
+      if (!prepared) {
+        model.traverse((node) => {
+          if (node.isMesh && node.material) {
+            node.material = Array.isArray(node.material)
+              ? node.material.map(mat => mat.clone())
+              : node.material.clone();
+          }
+        });
+        prepared = true;
+      }
+
+      const newColor = changed ? '#FFFFFF' : '#FFD166';
+
+      model.traverse((node) => {
+        if (node.isMesh && node.material) {
+          const materials = Array.isArray(node.material)
+            ? node.material
+            : [node.material];
+
+          materials.forEach(mat => {
+            if (mat.color) mat.color.set(newColor);
+          });
+        }
+      });
+
+      changed = !changed;
+    });
+  }
+});
+
+
+// 2. MOVEMENT INTERACTION
+AFRAME.registerComponent('move-on-click', {
+  init: function () {
+    const el = this.el;
+    let moved = false;
+
+    el.addEventListener('click', function () {
+      el.setAttribute('animation', {
+        property: 'position',
+        to: moved ? '13.75 0 -33' : '13 0 -33',
+        dur: 700,
+        easing: 'easeInOutQuad'
+      });
+
+      moved = !moved;
+    });
+  }
+});
+
+
+// 3. FEEDBACK INTERACTION
+AFRAME.registerComponent('feedback-on-click', {
+  init: function () {
+    const el = this.el;
+
+    el.addEventListener('click', function () {
+      const feedback = document.querySelector('#feedbackText');
+
+      feedback.setAttribute('value', 'Interaction successful!');
+      feedback.setAttribute('color', '#22C55E');
+
+      el.setAttribute('rotation', '0 45 0');
+    });
+  }
+});
+
+</script>
+
+</head>
+
+
+<body>
+
+
+    <a-scene>
+
+ <a-assets timeout="30000">
+     <a-asset-item id="chairModel" src="assets/models/chair.gltf"></a-asset-item>
+  </a-assets>
+
+<a-assets timeout="30000">
+     <a-asset-item id="crossModel" src="assets/models/cross.gltf"></a-asset-item>
+
+  </a-assets>
+
+<a-assets timeout="30000">
+     <a-asset-item id="throneModel" src="assets/models/throne.gltf"></a-asset-item>
+
+     </a-assets>
+
+     <a-assets timeout="30000">
+     <a-asset-item id="JUKIModel" src="assets/models/JUKI.gltf"></a-asset-item>
+
+  </a-assets>
+
+<a-assets timeout="30000">
+     <a-asset-item id="standingtableModel" src="assets/models/standingtable.gltf"></a-asset-item>
+
+     </a-assets>
+
+<a-assets timeout="30000">
+     <a-asset-item id="stoolModel" src="assets/models/stool.gltf"></a-asset-item>
+
+     </a-assets>
+
+     <a-assets timeout="30000">
+     <a-asset-item id="vaseModel" src="assets/models/vase.gltf"></a-asset-item>
+
+     </a-assets>
+<!--Cutting Tables-->
+ <a-assets timeout="30000">
+     <a-asset-item id="patterntableModel" src="assets/models/patterntable.gltf"></a-asset-item>
+
+     </a-assets>
+
+     <a-assets timeout="30000">
+     <a-asset-item id="greenscreenModel" src="assets/models/greenscreen.gltf"></a-asset-item>
+
+     </a-assets>
+
+      <a-assets timeout="30000">
+     <a-asset-item id="lamppostModel" src="assets/models/lamppost.gltf"></a-asset-item>
+
+     </a-assets>
+
+ <a-assets timeout="30000">
+     <a-asset-item id="chandelierModel" src="assets/models/chandelier.gltf"></a-asset-item>
+
+     </a-assets>
+
+    
+
+<!--GLTF's-->
+
+<!--Prayer Room-->
+<a-entity
+clss="clickable"
+move-on-click
+gltf-model="#chairModel"
+position="13.75 0 -33"
+rotation="0 -90 0"
+scale="0.075 0.075 0.075">
+</a-entity>
+
+<a-entity
+gltf-model="#crossModel"
+position="10.5 -1 -38"
+rotation="0 360 0"
+scale="0.050 0.075 0.075">
+</a-entity>
+
+<a-entity
+class="clickable"
+model-color-on-click
+gltf-model="#throneModel"
+position="9 1 -33"
+rotation="0 -90 0"
+scale=".50 .50 .50">
+</a-entity>
+
+<!--Sewing Room-->
+<a-entity
+gltf-model="#JUKIModel"
+position="-17 0 -2.5"
+rotation="0 90 0"
+scale=".35 .35 .35">
+</a-entity>
+
+<a-entity
+gltf-model="#standingtableModel"
+position="-17 -.10 -6"
+rotation="0 -90 0"
+scale=".25 .25 .25"
+color="#F2BB77">
+</a-entity>
+
+<a-entity
+gltf-model="#stoolModel"
+position="-15 -.5 -3.50"
+rotation="0 -90 0"
+scale=".20 .18 .20"
+color="#F2BB77">
+</a-entity>
+
+<a-entity
+gltf-model="#vaseModel"
+position="-17 0 -1.2"
+rotation="0 -90 0"
+scale=".50 .50 .50">
+</a-entity>
+
+<!--Cutting Room-->
+<a-entity
+id="patterntable"
+gltf-model="#patterntableModel"
+position="7 0 -5"
+rotation="0 90 0"
+scale=".5 .45 .5">
+</a-entity>
+
+<a-entity
+id="patterntable"
+gltf-model="#patterntableModel"
+position="7 0 -.25"
+rotation="0 90 0"
+scale=".5 .45 .5">
+</a-entity>
+
+<a-entity
+id="patterntable"
+gltf-model="#patterntableModel"
+position="14 0 -.25"
+rotation="0 90 0"
+scale=".5 .45 .5">
+</a-entity>
+
+<a-entity
+id="patterntable"
+gltf-model="#patterntableModel"
+position="14 0 -5"
+rotation="0 90 0"
+scale=".5 .45 .5">
+</a-entity>
+
+<!--Chandelier-->
+<a-entity
+gltf-model="#chandelierModel"
+position="0 2 -5"
+rotation="0 90 0"
+scale="3 3 3">
+</a-entity>
+
+<!--Showroom-->
+<a-entity
+id="greenscreen"
+gltf-model="#greenscreenModel"
+position="-8.5 -1.5 -39"
+rotation="0 180 0"
+scale="1.25 1 2">
+</a-entity>
+
+<a-entity
+id="lamppost"
+gltf-model="#lamppostModel"
+position="-16 0 -21"
+rotation="0 -285 0"
+scale=".30 .30 .30">
+</a-entity>
+
+<a-entity
+id="lamppost"
+gltf-model="#lamppostModel"
+position="-5 0 -21"
+rotation="0 -255 0"
+scale=".30 .30 .33">
+</a-entity>
+
+<a-entity
+gltf-model="#stoolModel"
+position="-6 0 -20"
+rotation="0 -90 0"
+scale=".20 .18 .20"
+color="#F2BB77">
+</a-entity>
+
+<a-entity
+gltf-model="#stoolModel"
+position="-8 0 -20"
+rotation="0 -90 0"
+scale=".20 .18 .20"
+color="#F2BB77">
+</a-entity>
+
+<a-entity
+gltf-model="#stoolModel"
+position="-10 0 -20"
+rotation="0 -90 0"
+scale=".20 .18 .20"
+color="#F2BB77">
+</a-entity>
+
+<a-sky
+color="BLACK">
+</a-sky>
+
+
+<!--floor-->
+<a-plane
+position="0 0 -18"
+rotation="-90 0 0"
+width="40"
+height="40"
+color="#401A0D">
+</a-plane>
+
+<!--Ceiling Light-->
+
+<!--Back Wall-->
+<a-plane
+position="0 4 -38"
+width="40"
+height="8"
+color="#260B05">
+</a-plane>
+
+<!--Front Wall-->
+<a-plane
+position="0 4 14"
+width="40"
+height="8"
+color="#260B05">
+</a-plane>
+
+<!--Left Wall-->
+<a-plane
+position="-18 4 -18"
+rotation="0 90 0"
+width="40"
+height="8"
+color="#260B05">
+</a-plane>
+
+<!--Right Wall-->
+<a-plane
+position="18 4 -18"
+rotation="0 -90 0"
+width="40"
+height="8"
+color="#260B05">
+</a-plane>
+
+<!--Right Top Quadrent-->
+<!--LHW-->
+<a-plane
+position="15 0 -18"
+width="7"
+height=".5"
+color="#F2BB77">
+</a-plane>
+<!--RHW-->
+<a-plane
+position="6 0 -18"
+width="5"
+height=".5"
+color="#F2BB77">
+</a-plane>
+<!--BVW-->
+<a-plane
+position="3.5 0 -21.5"
+rotation="0 -90 0"
+width="7"
+height=".5"
+color="#F2BB77">
+</a-plane>
+<!--TVW-->
+<a-plane
+position="3.5 0 -35"
+rotation="0 -90 0"
+width="7"
+height=".5"
+color="#F2BB77">
+</a-plane>
+
+<!--Left Top Quadrent-->
+<!--RHW-->
+<a-plane
+position="-15 0 -18"
+width="7"
+height=".5"
+color="#F2BB77">
+</a-plane>
+<!--LHW-->
+<a-plane
+position="-6 0 -18"
+width="5"
+height=".5"
+color="#F2BB77">
+</a-plane>
+<!--BVW-->
+<a-plane
+position="-3.5 0 -21.5"
+rotation="0 90 0"
+width="7"
+height=".5"
+color="#F2BB77">
+</a-plane>
+<!--TVW-->
+<a-plane
+position="-3.5 0 -35"
+rotation="0 90 0"
+width="7"
+height=".5"
+color="#F2BB77">
+</a-plane>
+
+<!--Right Botoom Quadrent-->
+<!--RHW-->
+<a-plane
+position="15 0 -10"
+width="7"
+height=".5"
+color="#F2BB77">
+</a-plane>
+<!--LHW-->
+<a-plane
+position="6 0 -10"
+width="5"
+height=".5"
+color="#F2BB77">
+</a-plane>
+<!--TVW-->
+<a-plane
+position="3.5 0 -8"
+rotation="0 -90 0"
+width="4"
+height=".5"
+color="#F2BB77">
+</a-plane>
+<!--BVW-->
+<a-plane
+position="3.5 0 -.5"
+rotation="0 -90 0"
+width="5"
+height=".5"
+color="#F2BB77">
+</a-plane>
+
+<!--Left Bottom Quadrent-->
+<!--RHW-->
+<a-plane
+position="-15 0 -10"
+width="7"
+height=".5"
+color="#F2BB77">
+</a-plane>
+<!--LHW-->
+<a-plane
+position="-6 0 -10"
+width="5"
+height=".5"
+color="#F2BB77">
+</a-plane>
+<!--TVW-->
+<a-plane
+position="-3.5 0 -8"
+rotation="0 90 0"
+width="4"
+height=".5"
+color="#F2BB77">
+</a-plane>
+<!--BVW-->
+<a-plane
+position="-3.5 0 -.5"
+rotation="0 90 0"
+width="5"
+height=".5"
+color="#F2BB77">
+</a-plane>
+
+<a-text
+id="feedbackText"
+value="HE IS RISEN"
+position="10.5 8 -38"
+width="6"
+color="#222222">
+</a-text>
+
+
+<!--Lighting-->
+<a-light
+type="ambient"
+color="white"
+intensity="2">
+</a-light>
+
+<a-light
+type="spot"
+position="0 6 -4"
+intensity="5"
+angle="30"
+penumbra="0.4">
+</a-light>
+
+<!-- Camera and Mouse Interaction -->
+
+<a-camera position="0 1.6 1">
+  <a-entity
+    cursor="rayOrigin: mouse"
+    raycaster="objects: .clickable">
+  </a-entity>
+</a-camera>
+
+</a-scene>
+</body>
+</html>
+
+
