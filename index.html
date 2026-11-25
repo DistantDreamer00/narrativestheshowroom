@@ -87,6 +87,11 @@ src="https://aframe.io/releases/1.8.0/aframe.min.js">
 
      </a-assets>
 
+    <a-assets timeout="30000">
+     <a-asset-item id="bibleModel" src="assets/models/bible.gltf"></a-asset-item>
+
+     </a-assets>
+    
 <img
     id="dallasEnvironment"
     src="assets/images/dallas-360.jpg">
@@ -394,7 +399,12 @@ rotation="0 -90 0"
 scale=".25 .25 .25">
 </a-entity>
 
-
+<a-entity
+gltf-model="#bibleModel"
+position=".70 1 -13"
+rotation="0 -90 0"
+scale=".25 .25 .25">
+</a-entity>
 
 
 
